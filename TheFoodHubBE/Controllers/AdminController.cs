@@ -10,49 +10,62 @@ namespace TheFoodHubBE.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IConfiguration _configuration;
+        private DAL dal;
+        private SqlConnection connection;
         public AdminController(IConfiguration configuration)
         {
             _configuration = configuration;
+             dal = new DAL();
+             connection = new SqlConnection(_configuration.GetConnectionString("TheFoodHubBE").ToString());
         }
 
         [HttpPost]
         [Route("addCategory")]
         public Response addCategory(string categoryName)
         {
-            DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("TheFoodHubBE").ToString());
-            Response response = dal.addCategory(categoryName, connection);
-            return response;
+            try{
+                Response response = dal.addCategory(categoryName, connection);
+                return response;
+            }catch (error){
+                Console.WriteLine(error)
+            }
         }
 
         [HttpPost]
         [Route("updateCategory")]
         public Response updateCategory(Category category)
         {
-            DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("TheFoodHubBE").ToString());
-            Response response = dal.updateCategory(category, connection);
-            return response;
+            try{
+                Response response = dal.updateCategory(category, connection);
+                return response;
+                }catch (error){
+                Console.WriteLine(error)
+            }
         }
 
         [HttpPost]
         [Route("addProduct")]
         public Response addUpdateProduct(Products products)
         {
-            DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("TheFoodHubBE").ToString());
+            try{
             Response response = dal.addProduct(products, connection);
             return response;
+            }catch (error){
+                Console.WriteLine(error)
+            }
         }
 
         [HttpGet]
         [Route("staffList")]
         public Response userList()
         {
-            DAL dal = new DAL();
-            SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("TheFoodHubBE").ToString());
-            Response response = dal.userList(connection);
-            return response;
+            try{
+                  Response response = dal.userList(connection);
+                   return response;
+            } catch (error){
+                Console.WriteLine(error)
+            }
+          
         }
     }
 }
