@@ -27,7 +27,7 @@ namespace TheFoodHubBE.Controllers
                 Response response = dal.addCategory(categoryName, connection);
                 return response;
             }catch (error){
-                Console.WriteLine(error)
+                Console.WriteLine(error);
             }
         }
 
@@ -39,7 +39,7 @@ namespace TheFoodHubBE.Controllers
                 Response response = dal.updateCategory(category, connection);
                 return response;
                 }catch (error){
-                Console.WriteLine(error)
+                Console.WriteLine(error);
             }
         }
 
@@ -51,7 +51,7 @@ namespace TheFoodHubBE.Controllers
             Response response = dal.addProduct(products, connection);
             return response;
             }catch (error){
-                Console.WriteLine(error)
+                Console.WriteLine(error);
             }
         }
 
@@ -63,7 +63,7 @@ namespace TheFoodHubBE.Controllers
                   Response response = dal.userList(connection);
                    return response;
             } catch (error){
-                Console.WriteLine(error)
+                Console.WriteLine(error);
             }
           
         }
